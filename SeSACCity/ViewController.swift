@@ -42,7 +42,8 @@ class ViewController: UIViewController, ConfiguarUI {
     }
     
     // CollectionView를 사용하는 ViewController일떼마다 layout을 설정해야되기 때문에 protocol
-    func settingCollectionView() {
+    // extension으로 사용한다면 UICollectionViewDelegate, UITableViewDelegate 같이 ViewController의 하단부에 extension ViewController { settingCollectionView() }로 빼도 된다.
+    /*func settingCollectionView() {
         let layout = UICollectionViewFlowLayout()
         let spacing: CGFloat = 4
         let width = UIScreen.main.bounds.width - (spacing * 3)
@@ -59,7 +60,7 @@ class ViewController: UIViewController, ConfiguarUI {
         let xib = UINib(nibName: "CityCollectionViewCell", bundle: nil)
         self.collectionView.register(xib, forCellWithReuseIdentifier: "CityCollectionViewCell")
         self.collectionView.collectionViewLayout = layout
-    }
+    }*/
 
 }
 
@@ -93,5 +94,25 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         return cell
     }
     
-    
+}
+
+extension ViewController {
+    func settingCollectionView() {
+        let layout = UICollectionViewFlowLayout()
+        let spacing: CGFloat = 4
+        let width = UIScreen.main.bounds.width - (spacing * 3)
+        
+        layout.itemSize = CGSize(width: width / 2, height: 250)
+        layout.minimumLineSpacing = 0
+        layout.minimumInteritemSpacing = spacing
+        layout.sectionInset = UIEdgeInsets(top: 10, left: 4, bottom: 0, right: 4)
+        layout.scrollDirection = .vertical
+
+        self.collectionView.dataSource = self
+        self.collectionView.delegate = self
+        
+        let xib = UINib(nibName: "CityCollectionViewCell", bundle: nil)
+        self.collectionView.register(xib, forCellWithReuseIdentifier: "CityCollectionViewCell")
+        self.collectionView.collectionViewLayout = layout
+    }
 }
