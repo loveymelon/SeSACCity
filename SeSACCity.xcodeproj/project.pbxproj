@@ -17,6 +17,8 @@
 		DF354AA82B4D32B700540D71 /* CityCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF354AA62B4D32B700540D71 /* CityCollectionViewCell.xib */; };
 		DF354AAC2B4D342900540D71 /* CityInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF354AAB2B4D342800540D71 /* CityInfo.swift */; };
 		DF354AAF2B4D349300540D71 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = DF354AAE2B4D349300540D71 /* Kingfisher */; };
+		DF75CF252B4E846B00AEF2A6 /* ConfiguarUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF75CF242B4E846B00AEF2A6 /* ConfiguarUI.swift */; };
+		DF75CF272B4E8D8000AEF2A6 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF75CF262B4E8D8000AEF2A6 /* UILabel+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,8 @@
 		DF354AA52B4D32B700540D71 /* CityCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityCollectionViewCell.swift; sourceTree = "<group>"; };
 		DF354AA62B4D32B700540D71 /* CityCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CityCollectionViewCell.xib; sourceTree = "<group>"; };
 		DF354AAB2B4D342800540D71 /* CityInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityInfo.swift; sourceTree = "<group>"; };
+		DF75CF242B4E846B00AEF2A6 /* ConfiguarUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfiguarUI.swift; sourceTree = "<group>"; };
+		DF75CF262B4E8D8000AEF2A6 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +68,8 @@
 		DF354A902B4D322D00540D71 /* SeSACCity */ = {
 			isa = PBXGroup;
 			children = (
+				DF75CF232B4E7D9800AEF2A6 /* Protocol */,
+				DF75CF222B4E7B7300AEF2A6 /* Extension */,
 				DF354A912B4D322D00540D71 /* AppDelegate.swift */,
 				DF354A932B4D322D00540D71 /* SceneDelegate.swift */,
 				DF354A952B4D322D00540D71 /* ViewController.swift */,
@@ -76,6 +82,22 @@
 				DF354A9F2B4D322F00540D71 /* Info.plist */,
 			);
 			path = SeSACCity;
+			sourceTree = "<group>";
+		};
+		DF75CF222B4E7B7300AEF2A6 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				DF75CF262B4E8D8000AEF2A6 /* UILabel+Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		DF75CF232B4E7D9800AEF2A6 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				DF75CF242B4E846B00AEF2A6 /* ConfiguarUI.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -156,8 +178,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF75CF252B4E846B00AEF2A6 /* ConfiguarUI.swift in Sources */,
 				DF354A962B4D322D00540D71 /* ViewController.swift in Sources */,
 				DF354A922B4D322D00540D71 /* AppDelegate.swift in Sources */,
+				DF75CF272B4E8D8000AEF2A6 /* UILabel+Extension.swift in Sources */,
 				DF354AAC2B4D342900540D71 /* CityInfo.swift in Sources */,
 				DF354A942B4D322D00540D71 /* SceneDelegate.swift in Sources */,
 				DF354AA72B4D32B700540D71 /* CityCollectionViewCell.swift in Sources */,

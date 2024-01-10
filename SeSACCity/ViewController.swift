@@ -7,7 +7,10 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+protocol DesignNav {
+    func designNavgation()
+}
+class ViewController: UIViewController, ConfiguarUI {
 
     @IBOutlet var collectionView: UICollectionView!
     @IBOutlet var segment: UISegmentedControl!
@@ -20,10 +23,12 @@ class ViewController: UIViewController {
         designNavigation()
     }
     
+    // ViewController마다 navigationItem의 title이 다르기 때문에 protocol
     func designNavigation() {
         self.navigationItem.title = "인기 도서"
     }
     
+    // 하나의 ViewController에서만 세그를 쓴다고하면 protocol로 뺄 필요가 없다고 생각하였습니다.
     func designSegment() {
         self.segment.setTitle("모두", forSegmentAt: 0)
         self.segment.setTitle("국내", forSegmentAt: 1)
@@ -36,6 +41,7 @@ class ViewController: UIViewController {
         self.collectionView.reloadData()
     }
     
+    // CollectionView를 사용하는 ViewController일떼마다 layout을 설정해야되기 때문에 protocol
     func settingCollectionView() {
         let layout = UICollectionViewFlowLayout()
         let spacing: CGFloat = 4

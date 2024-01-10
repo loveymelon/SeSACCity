@@ -14,20 +14,20 @@ class CityCollectionViewCell: UICollectionViewCell {
     @IBOutlet var mainLabel: UILabel!
     @IBOutlet var subLabel: UILabel!
     
+    // 왜 지양하는지 알아볼것
+    override func draw(_ rect: CGRect) {
+        self.mainImageView.clipsToBounds = true
+        self.mainImageView.layer.cornerRadius = self.mainImageView.frame.width / 2
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        self.mainImageView.clipsToBounds = true
-        self.mainImageView.layer.cornerRadius = self.mainImageView.bounds.width / 2
         self.mainImageView.contentMode = .scaleToFill
         
-        self.mainLabel.textAlignment = .center
-        self.mainLabel.font = .boldSystemFont(ofSize: 16)
-        
-        self.subLabel.numberOfLines = 0
-        self.subLabel.textColor = .lightGray
-        self.subLabel.textAlignment = .center
-        self.subLabel.font = .systemFont(ofSize: 14)
+        //label의 textAlignment, font는 자주 사용하고 안에 있는 값만 달라 extension으로 뺐습니다.
+        self.mainLabel.setBodyLabel(aligment: .center, fontSize: 16)
+        self.subLabel.setBodyLabel(aligment: .center, fontSize: 14, lineValue: 0, color: .lightGray)
     }
     
     func configuarCell(data: City) {
