@@ -10,7 +10,7 @@ import UIKit
 protocol DesignNav {
     func designNavgation()
 }
-class ViewController: UIViewController, ConfiguarUI {
+class ViewController: UIViewController {
 
     @IBOutlet var collectionView: UICollectionView!
     @IBOutlet var segment: UISegmentedControl!
@@ -21,11 +21,6 @@ class ViewController: UIViewController, ConfiguarUI {
         settingCollectionView()
         designSegment()
         designNavigation()
-    }
-    
-    // ViewController마다 navigationItem의 title이 다르기 때문에 protocol
-    func designNavigation() {
-        self.navigationItem.title = "인기 도서"
     }
     
     // 하나의 ViewController에서만 세그를 쓴다고하면 protocol로 뺄 필요가 없다고 생각하였습니다.
@@ -96,7 +91,8 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
 }
 
-extension ViewController {
+// 코드 정리용 extension
+extension ViewController: ConfiguarUI {
     func settingCollectionView() {
         let layout = UICollectionViewFlowLayout()
         let spacing: CGFloat = 4
@@ -114,5 +110,10 @@ extension ViewController {
         let xib = UINib(nibName: "CityCollectionViewCell", bundle: nil)
         self.collectionView.register(xib, forCellWithReuseIdentifier: "CityCollectionViewCell")
         self.collectionView.collectionViewLayout = layout
+    }
+    
+    // ViewController마다 navigationItem의 title이 다르기 때문에 protocol
+    func designNavigation() {
+        self.navigationItem.title = "인기 도서"
     }
 }

@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+// ViewController들의 기능 통일
 protocol ConfiguarUI {
     func designNavigation()
     func settingCollectionView()
