@@ -10,10 +10,14 @@ import UIKit
 
 // ViewController에서 Label을 공통되게 설정하는 부분들이 많아 UILabel 자체에 메소드를 추가하는 extension
 extension UILabel {
-    func setBodyLabel(aligment: NSTextAlignment, fontSize: CGFloat, lineValue: Int = 1, color: UIColor = .black) {
+    func setBodyLabel(aligment: NSTextAlignment = .left, fontSize: CGFloat, lineValue: Int = 1, color: UIColor = .black, bold: Bool) {
         self.numberOfLines = lineValue
         self.textColor = color
         self.textAlignment = aligment
-        self.font = .systemFont(ofSize: fontSize)
+        if !bold {
+            self.font = .systemFont(ofSize: fontSize)
+        } else {
+            self.font = .boldSystemFont(ofSize: fontSize)
+        }
     }
 }

@@ -26,8 +26,8 @@ class CityCollectionViewCell: UICollectionViewCell {
         self.mainImageView.contentMode = .scaleToFill
         
         //label의 textAlignment, font는 자주 사용하고 안에 있는 값만 달라 extension으로 뺐습니다.
-        self.mainLabel.setBodyLabel(aligment: .center, fontSize: 16)
-        self.subLabel.setBodyLabel(aligment: .center, fontSize: 14, lineValue: 0, color: .lightGray)
+        self.mainLabel.setBodyLabel(aligment: .center, fontSize: 16, bold: true)
+        self.subLabel.setBodyLabel(aligment: .center, fontSize: 14, lineValue: 0, color: .lightGray, bold: false)
     }
     
     func configuarCell(data: City) {

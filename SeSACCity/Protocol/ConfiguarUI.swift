@@ -9,7 +9,8 @@ import Foundation
 import UIKit
 
 // ViewController들의 기능 통일
-protocol ConfiguarUI {
+@objc protocol ConfiguarUI {
     func designNavigation()
-    func settingCollectionView()
+    @objc optional func settingCollectionView()
+    @objc optional func settingTableView()
 }

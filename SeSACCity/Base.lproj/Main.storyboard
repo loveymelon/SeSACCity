@@ -77,6 +77,122 @@
             </objects>
             <point key="canvasLocation" x="1063.3587786259541" y="4.9295774647887329"/>
         </scene>
+        <!--City Info View Controller-->
+        <scene sceneID="FP9-k2-llB">
+            <objects>
+                <viewController storyboardIdentifier="CityInfoViewController" id="uUn-Tk-RJo" customClass="CityInfoViewController" customModule="SeSACCity" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="phv-UX-Ogm">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uKc-R5-zUE">
+                                <rect key="frame" x="0.0" y="59" width="393" height="1"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="X69-90-5Nl"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="bo7-FN-pVB">
+                                <rect key="frame" x="0.0" y="60" width="393" height="758"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="t7v-aK-2XG"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="t7v-aK-2XG" firstAttribute="trailing" secondItem="uKc-R5-zUE" secondAttribute="trailing" id="1sq-p8-vac"/>
+                            <constraint firstItem="uKc-R5-zUE" firstAttribute="leading" secondItem="t7v-aK-2XG" secondAttribute="leading" id="Vff-vm-YbQ"/>
+                            <constraint firstItem="t7v-aK-2XG" firstAttribute="bottom" secondItem="bo7-FN-pVB" secondAttribute="bottom" id="Xo5-8t-C9I"/>
+                            <constraint firstItem="t7v-aK-2XG" firstAttribute="trailing" secondItem="bo7-FN-pVB" secondAttribute="trailing" id="aNz-FC-ZDL"/>
+                            <constraint firstItem="uKc-R5-zUE" firstAttribute="top" secondItem="t7v-aK-2XG" secondAttribute="top" id="jLy-05-Rjt"/>
+                            <constraint firstItem="bo7-FN-pVB" firstAttribute="leading" secondItem="t7v-aK-2XG" secondAttribute="leading" id="tVW-dW-6Ko"/>
+                            <constraint firstItem="bo7-FN-pVB" firstAttribute="top" secondItem="uKc-R5-zUE" secondAttribute="bottom" id="vnE-Sa-sDa"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="bo7-FN-pVB" id="M3K-2a-lZa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xgH-aI-xHu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1854" y="5"/>
+        </scene>
+        <!--Travel View Controller-->
+        <scene sceneID="nFS-nu-Xun">
+            <objects>
+                <viewController storyboardIdentifier="TravelViewController" id="NUQ-Lk-yni" customClass="TravelViewController" customModule="SeSACCity" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1Cf-Uc-8XY">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="관광지" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Coy-hO-sLD">
+                                <rect key="frame" x="149.66666666666666" y="404.66666666666669" width="93.666666666666657" height="43"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D9A-9x-hPh">
+                                <rect key="frame" x="159" y="457.66666666666669" width="75" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="back"/>
+                                <connections>
+                                    <action selector="tapDismissButton:" destination="NUQ-Lk-yni" eventType="touchUpInside" id="d2J-aN-Eva"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="jnz-4r-5Tb"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="D9A-9x-hPh" firstAttribute="top" secondItem="Coy-hO-sLD" secondAttribute="bottom" constant="10" id="EOG-MT-H7A"/>
+                            <constraint firstItem="Coy-hO-sLD" firstAttribute="centerX" secondItem="1Cf-Uc-8XY" secondAttribute="centerX" id="JJX-aK-Kor"/>
+                            <constraint firstItem="Coy-hO-sLD" firstAttribute="centerY" secondItem="1Cf-Uc-8XY" secondAttribute="centerY" id="POR-f2-pif"/>
+                            <constraint firstItem="jnz-4r-5Tb" firstAttribute="trailing" secondItem="D9A-9x-hPh" secondAttribute="trailing" constant="159" id="Rzp-Ck-zdo"/>
+                            <constraint firstItem="D9A-9x-hPh" firstAttribute="leading" secondItem="jnz-4r-5Tb" secondAttribute="leading" constant="159" id="vGQ-Jw-sw7"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="S6v-tf-TKQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2723" y="351"/>
+        </scene>
+        <!--Ad View Controller-->
+        <scene sceneID="srd-1v-1Vh">
+            <objects>
+                <viewController storyboardIdentifier="AdViewController" id="UGm-xN-7wZ" customClass="AdViewController" customModule="SeSACCity" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9Hj-BZ-xx7">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="광고" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wKM-5H-z7U">
+                                <rect key="frame" x="165.33333333333334" y="404.66666666666669" width="62.333333333333343" height="43"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bVA-hf-2KN">
+                                <rect key="frame" x="159" y="457.66666666666669" width="75" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Back"/>
+                                <connections>
+                                    <action selector="tappedPopButton:" destination="UGm-xN-7wZ" eventType="touchUpInside" id="5WY-kA-dyq"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="nL7-5E-6aQ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="bVA-hf-2KN" firstAttribute="leading" secondItem="nL7-5E-6aQ" secondAttribute="leading" constant="159" id="MgJ-Mu-m4L"/>
+                            <constraint firstItem="bVA-hf-2KN" firstAttribute="top" secondItem="wKM-5H-z7U" secondAttribute="bottom" constant="10" id="Or0-lJ-z0N"/>
+                            <constraint firstItem="wKM-5H-z7U" firstAttribute="centerY" secondItem="9Hj-BZ-xx7" secondAttribute="centerY" id="cDx-WU-flw"/>
+                            <constraint firstItem="wKM-5H-z7U" firstAttribute="centerX" secondItem="9Hj-BZ-xx7" secondAttribute="centerX" id="sa0-A4-tig"/>
+                            <constraint firstItem="nL7-5E-6aQ" firstAttribute="trailing" secondItem="bVA-hf-2KN" secondAttribute="trailing" constant="159" id="wMD-h9-W1U"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zsO-Ns-him" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2723" y="-312"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="Oe2-dZ-OQP">
             <objects>

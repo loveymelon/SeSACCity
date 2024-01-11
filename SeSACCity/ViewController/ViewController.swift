@@ -24,13 +24,6 @@ class ViewController: UIViewController {
     }
     
     // 하나의 ViewController에서만 세그를 쓴다고하면 protocol로 뺄 필요가 없다고 생각하였습니다.
-    func designSegment() {
-        self.segment.setTitle("모두", forSegmentAt: 0)
-        self.segment.setTitle("국내", forSegmentAt: 1)
-        self.segment.insertSegment(withTitle: "해외", at: 2, animated: true)
-        
-        self.segment.addTarget(self, action: #selector(segValueChanged), for: .valueChanged)
-    }
     
     @objc func segValueChanged(sender: UISegmentedControl) {
         self.collectionView.reloadData()
@@ -89,6 +82,12 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: CityInfoViewController.cityInfoIdentifier) as! CityInfoViewController
+        
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
 }
 
 // 코드 정리용 extension
@@ -115,5 +114,15 @@ extension ViewController: ConfiguarUI {
     // ViewController마다 navigationItem의 title이 다르기 때문에 protocol
     func designNavigation() {
         self.navigationItem.title = "인기 도서"
+    }
+}
+
+extension ViewController {
+    func designSegment() {
+        self.segment.setTitle("모두", forSegmentAt: 0)
+        self.segment.setTitle("국내", forSegmentAt: 1)
+        self.segment.insertSegment(withTitle: "해외", at: 2, animated: true)
+        
+        self.segment.addTarget(self, action: #selector(segValueChanged), for: .valueChanged)
     }
 }
