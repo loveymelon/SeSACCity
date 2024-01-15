@@ -10,10 +10,19 @@ import UIKit
 protocol DesignNav {
     func designNavgation()
 }
+
 class ViewController: UIViewController {
 
     @IBOutlet var collectionView: UICollectionView!
     @IBOutlet var segment: UISegmentedControl!
+    @IBOutlet var searchBar: UISearchBar!
+    
+    let originCityInfoList = CityInfo.city
+    var cityInfolList = CityInfo.city {
+        didSet {
+            self.collectionView.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,12 +30,44 @@ class ViewController: UIViewController {
         settingCollectionView()
         designSegment()
         designNavigation()
+        setupSearchBar()
     }
     
     // 하나의 ViewController에서만 세그를 쓴다고하면 protocol로 뺄 필요가 없다고 생각하였습니다.
-    
+    // 만약에 searbar의 text가 비워있지않다면 비교하고 없으면 그냥 비워서 보내기
     @objc func segValueChanged(sender: UISegmentedControl) {
-        self.collectionView.reloadData()
+        var tempCityList: [City] = []
+        
+        // 고민! 기능 구현에만 급급하여 반복되는 코드들이 발생되는데 아무리 생각해도 수업때 했던 enum이나 extension등을 활용하여 줄이려고 하여도 떠오르지 않습니다.....
+        if sender.selectedSegmentIndex == 0 {
+            self.cityInfolList = self.originCityInfoList
+        } else if sender.selectedSegmentIndex == 1 {
+            for item in self.originCityInfoList {
+                if item.domestic_travel == true {
+                    if self.searchBar.text == "" {
+                        tempCityList.append(item)
+                    } else {
+                        if item.city_english_name.contains(self.searchBar.text!) || item.city_explain.contains(self.searchBar.text!) || item.city_explain.contains(self.searchBar.text!) {
+                            tempCityList.append(item)
+                        }
+                    }
+                }
+            }
+            self.cityInfolList = tempCityList
+        } else {
+            for item in self.originCityInfoList {
+                if item.domestic_travel == false {
+                    if self.searchBar.text == "" {
+                        tempCityList.append(item)
+                    } else {
+                        if item.city_english_name.contains(self.searchBar.text!) || item.city_explain.contains(self.searchBar.text!) || item.city_explain.contains(self.searchBar.text!) {
+                            tempCityList.append(item)
+                        }
+                    }
+                }
+            }
+            self.cityInfolList = tempCityList
+        }
     }
     
     // CollectionView를 사용하는 ViewController일떼마다 layout을 설정해야되기 때문에 protocol
@@ -54,12 +95,12 @@ class ViewController: UIViewController {
 
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return CityInfo.city.count
+        return cityInfolList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CityCollectionViewCell", for: indexPath) as! CityCollectionViewCell
-        let item = CityInfo.city[indexPath.item]
+        let item = cityInfolList[indexPath.item]
         
         cell.configuarCell(data: item)
         
@@ -86,6 +127,47 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         let vc = storyboard?.instantiateViewController(withIdentifier: CityInfoViewController.cityInfoIdentifier) as! CityInfoViewController
         
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+}
+
+// city_name: "방콕", city_english_name: "Bangkok", city_explain: "방콕, 파타야, 후아힌, 코사멧, 코사무이",
+
+extension ViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        var tempCityList: [City] = []
+        
+        if searchBar.text == ""  {
+            self.cityInfolList = self.originCityInfoList
+        } else {
+            for item in self.cityInfolList {
+                if item.city_name.contains(searchBar.text!) || item.city_english_name.contains(searchBar.text!) || item.city_explain.contains(searchBar.text!) {
+                    tempCityList.append(item)
+                }
+            }
+            self.cityInfolList = tempCityList
+        }
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        var tempCityList: [City] = []
+        
+        if searchBar.text == ""  {
+            self.cityInfolList = self.originCityInfoList
+        } else {
+            for item in self.cityInfolList {
+                if item.city_name.contains(searchBar.text!) || item.city_english_name.contains(searchBar.text!) || item.city_explain.contains(searchBar.text!) {
+                    tempCityList.append(item)
+                }
+            }
+            self.cityInfolList = tempCityList
+        }
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        print(cityInfolList.count)
+        self.cityInfolList = self.originCityInfoList
     }
     
 }
@@ -118,6 +200,11 @@ extension ViewController: ConfiguarUI {
 }
 
 extension ViewController {
+    func setupSearchBar() {
+        self.searchBar.delegate = self
+        self.searchBar.showsCancelButton = true
+    }
+    
     func designSegment() {
         self.segment.setTitle("모두", forSegmentAt: 0)
         self.segment.setTitle("국내", forSegmentAt: 1)

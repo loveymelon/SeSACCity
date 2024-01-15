@@ -38,6 +38,7 @@ class CityInfoTableViewCell: UITableViewCell {
         
         let url = URL(string: data.travel_image!)!
         
+        
         let image = data.like! ?  "heart" : "heart.fill"
         self.travelImageView.kf.setImage(with: url)
         self.mainLabel.text = data.title
