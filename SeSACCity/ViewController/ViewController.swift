@@ -39,36 +39,19 @@ class ViewController: UIViewController {
         var tempCityList: [City] = []
         
         // 고민! 기능 구현에만 급급하여 반복되는 코드들이 발생되는데 아무리 생각해도 수업때 했던 enum이나 extension등을 활용하여 줄이려고 하여도 떠오르지 않습니다.....
-        if sender.selectedSegmentIndex == 0 {
+        switch sender.selectedSegmentIndex {
+        case 0:
             self.cityInfolList = self.originCityInfoList
-        } else if sender.selectedSegmentIndex == 1 {
-            for item in self.originCityInfoList {
-                if item.domestic_travel == true {
-                    if self.searchBar.text == "" {
-                        tempCityList.append(item)
-                    } else {
-                        if item.city_english_name.contains(self.searchBar.text!) || item.city_explain.contains(self.searchBar.text!) || item.city_explain.contains(self.searchBar.text!) {
-                            tempCityList.append(item)
-                        }
-                    }
-                }
-            }
-            self.cityInfolList = tempCityList
-        } else {
-            for item in self.originCityInfoList {
-                if item.domestic_travel == false {
-                    if self.searchBar.text == "" {
-                        tempCityList.append(item)
-                    } else {
-                        if item.city_english_name.contains(self.searchBar.text!) || item.city_explain.contains(self.searchBar.text!) || item.city_explain.contains(self.searchBar.text!) {
-                            tempCityList.append(item)
-                        }
-                    }
-                }
-            }
-            self.cityInfolList = tempCityList
+        case 1:
+            self.cityInfolList = compareItem(tempArray: self.originCityInfoList, bool: true)
+        case 2:
+            self.cityInfolList = compareItem(tempArray: self.originCityInfoList, bool: false)
+        default:
+            print("error")
         }
     }
+    
+
     
     // CollectionView를 사용하는 ViewController일떼마다 layout을 설정해야되기 때문에 protocol
     // extension으로 사용한다면 UICollectionViewDelegate, UITableViewDelegate 같이 ViewController의 하단부에 extension ViewController { settingCollectionView() }로 빼도 된다.
@@ -135,38 +118,23 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
 
 extension ViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        var tempCityList: [City] = []
-        
         if searchBar.text == ""  {
             self.cityInfolList = self.originCityInfoList
         } else {
-            for item in self.cityInfolList {
-                if item.city_name.contains(searchBar.text!) || item.city_english_name.contains(searchBar.text!) || item.city_explain.contains(searchBar.text!) {
-                    tempCityList.append(item)
-                }
-            }
-            self.cityInfolList = tempCityList
+            self.cityInfolList = compareItem(tempArray: self.originCityInfoList)
         }
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        var tempCityList: [City] = []
-        
         if searchBar.text == ""  {
             self.cityInfolList = self.originCityInfoList
         } else {
-            for item in self.cityInfolList {
-                if item.city_name.contains(searchBar.text!) || item.city_english_name.contains(searchBar.text!) || item.city_explain.contains(searchBar.text!) {
-                    tempCityList.append(item)
-                }
-            }
-            self.cityInfolList = tempCityList
+            self.cityInfolList = compareItem(tempArray: self.originCityInfoList)
         }
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
-        print(cityInfolList.count)
         self.cityInfolList = self.originCityInfoList
     }
     
@@ -212,4 +180,55 @@ extension ViewController {
         
         self.segment.addTarget(self, action: #selector(segValueChanged), for: .valueChanged)
     }
+    
+    func compareItem(tempArray: [City], bool: Bool? = nil) -> [City] {
+        var temp: [City] = []
+        
+        switch bool {
+        case nil:
+            for item in tempArray {
+                if item.city_name.contains(searchBar.text!) || item.city_english_name.contains(searchBar.text!) || item.city_explain.contains(searchBar.text!) {
+                    temp.append(item)
+                }
+            }
+            return temp
+        case true:
+            for item in tempArray {
+                // 서치바의 text nil 여부
+                if searchBar.text == "" {
+                    temp.append(item)
+                } else {
+                    if item.domestic_travel == bool {
+                        if item.city_name.contains(searchBar.text!) || item.city_english_name.contains(searchBar.text!) || item.city_explain.contains(searchBar.text!) {
+                            temp.append(item)
+                        }
+                    }
+                }
+            }
+            return temp
+        case false:
+            for item in tempArray {
+                if searchBar.text == "" {
+                    temp.append(item)
+                } else {
+                    if item.domestic_travel == bool {
+                        if item.city_name.contains(searchBar.text!) || item.city_english_name.contains(searchBar.text!) || item.city_explain.contains(searchBar.text!) {
+                            temp.append(item)
+                        }
+                    }
+                }
+            }
+            return temp
+        case .some(_):
+            print("error")
+            return temp
+        }
+    }
+    
+    /*func aaa(item: City) -> City? {
+        if item.city_name.contains(searchBar.text!) || item.city_english_name.contains(searchBar.text!) || item.city_explain.contains(searchBar.text!) {
+            return item
+        }
+        return nil
+    }*/
 }
